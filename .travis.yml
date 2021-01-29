@@ -9,3 +9,15 @@ script:
  - docker run -e CI=true ratika31/updatedcode  npm run test -- --coverage
 
 
+deploy:
+ provider: elasticbeanstalk
+ region: "eu-west-2"
+ app: "travis_updatedcode"
+ env: "Travisupdatedcode-env"
+ bucket_name: "elasticbeanstalk-eu-west-2-217456606433"
+ bucket_path: "travis_updatedcode"
+skip_cleanup: true
+ on:
+  branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key:"$AWS_SECRET_ACCESS_KEY"
